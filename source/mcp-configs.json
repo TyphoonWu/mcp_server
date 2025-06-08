@@ -1,0 +1,25 @@
+{
+  "mcpServers": {
+    "everything-search": {
+      "disabled": false,
+      "timeout": 60,
+      "type": "stdio",
+      "command": "C:\\Users\\admin\\miniconda3\\envs\\mcptest\\Scripts\\uvx.exe",
+      "args": [
+        "mcp-server-everything-search"
+      ],
+      "env": {
+        "EVERYTHING_SDK_PATH": "C:\\Program Files\\Everything\\Everything-SDK\\dll\\Everything64.dll"
+      }
+    },
+    "weather-search": {
+      "disabled": false,
+      "timeout": 60,
+      "type": "stdio",
+      "command": "",
+      "env": {
+        "WEATHER_API_KEY": "your_api_key_here"
+      }
+    }
+  }
+}

@@ -1,0 +1,12 @@
+[project]
+name = "mcp_server"
+description="A FastAPI server with MCP support"
+version = "0.1.1"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "fastapi>=0.115.12",
+    "fastapi-mcp>=0.3.4",
+    "toml>=0.10.2",
+    "sentence-transformers>=4.1.0",
+]
