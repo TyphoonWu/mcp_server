@@ -15,3 +15,10 @@ https://github.com/tadata-org/fastapi_mcp/tree/main
 https://github.com/mamertofabian/mcp-everything-search/tree/main
 https://github.com/peterparker57/everything-mcp-server
 https://huggingface.co/sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2
+https://github.com/modelcontextprotocol/inspector
+https://modelcontextprotocol.io/docs/tools/debugging
+
+### weather
+https://weather.cma.cn/web/weather/map.html#
+https://weather.cma.cn/api/map/weather/1
+https://weather.cma.cn/api/now/54511
