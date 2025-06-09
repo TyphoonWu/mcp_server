@@ -1,6 +1,8 @@
 {
   "mcpServers": {
     "everything-search": {
+      "name": "Everything Search",
+      "description": "Find and locate files or folders by name, such as searching for README.md file location on your computer.",
       "disabled": false,
       "timeout": 60,
       "type": "stdio",
@@ -13,6 +15,8 @@
       }
     },
     "weather-search": {
+      "name": "Weather Search",
+      "description": "Search for weather information using a weather API.",
       "disabled": false,
       "timeout": 60,
       "type": "stdio",
