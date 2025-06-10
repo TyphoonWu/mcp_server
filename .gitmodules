@@ -1,0 +1,3 @@
+[submodule "tools/everything-mcp-server"]
+	path = tools/everything-mcp-server
+	url = git@github.com:TyphoonWu/everything-mcp-server.git
