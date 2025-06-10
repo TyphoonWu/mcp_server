@@ -1,4 +1,9 @@
 # MCP Server
+## Download
+```git
+git clone https://github.com/TyphoonWu/mcp_server.git
+git submodule update --remote
+```
 ## 安装pyproject.toml中的dependencies
 ```python
 pip install pdm
