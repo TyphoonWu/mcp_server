@@ -9,3 +9,4 @@ models/
 
 # Virtual environments
 .venv
+.vscode
