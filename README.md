@@ -2,7 +2,8 @@
 ## Download
 ```git
 git clone https://github.com/TyphoonWu/mcp_server.git
-git submodule update --remote
+git submodule init
+git submodule update
 ```
 ## 安装pyproject.toml中的dependencies
 ```python
