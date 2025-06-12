@@ -1,18 +1,24 @@
 {
   "mcpServers": {
-    "everything-search": {
-      "name": "Everything Search",
+    "everything": {
+      "name": "file Search",
       "description": "Find and locate files or folders by name, such as searching for README.md file location on your computer.",
-      "disabled": false,
+      "disabled": true,
       "timeout": 60,
       "type": "stdio",
-      "command": "uvx",
+      "command": "node",
       "args": [
-        "mcp-server-everything-search"
+        "C:\\Users\\wostest\\workspace\\mcp_server\\tools\\everything-mcp-server\\build\\index.js"
       ],
       "env": {
         "EVERYTHING_SDK_PATH": "C:\\Program Files\\Everything\\Everything-SDK\\dll\\Everything64.dll"
-      }
+      },
+      "autoApprove": [
+        "search_files",
+        "search_content",
+        "search_files_advanced",
+        "find_duplicates"
+      ]
     },
     "weather-search": {
       "name": "Weather Search",

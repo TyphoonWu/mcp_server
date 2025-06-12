@@ -15,6 +15,13 @@ pdm install
 pip install pdm
 pdm add sentence-transformers 
 ```
+
+## 测试
+确保llm 服务启动并提供相关API
+```python
+python GenieAPIClient.py --prompt "please help find file README.md?" --stream
+```
+
 ## Documents:
 https://fastapi.tiangolo.com/tutorial/#run-the-code
 https://github.com/tadata-org/fastapi_mcp/tree/main
