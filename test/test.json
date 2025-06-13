@@ -1,0 +1,160 @@
+[
+  {
+    "name": "search_files",
+    "description": null,
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "query": {
+          "type": "string",
+          "description": "Search query for file names"
+        },
+        "maxResults": {
+          "type": "number",
+          "minimum": 1,
+          "maximum": 20,
+          "description": "Maximum number of results to return (default: 20)"
+        },
+        "matchCase": {
+          "type": "boolean",
+          "description": "Enable case-sensitive search"
+        },
+        "matchWholeWord": {
+          "type": "boolean",
+          "description": "Match whole words only"
+        },
+        "regex": {
+          "type": "boolean",
+          "description": "Enable regular expression search"
+        }
+      },
+      "required": ["query"],
+      "additionalProperties": false,
+      "$schema": "http://json-schema.org/draft-07/schema#"
+    },
+    "annotations": null
+  },
+  {
+    "name": "search_files_advanced",
+    "description": null,
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "query": {
+          "type": "string",
+          "description": "Search query for file names"
+        },
+        "path": {
+          "type": "string",
+          "description": "Limit search to specific path"
+        },
+        "extension": {
+          "type": "string",
+          "description": "Filter by file extension (e.g., 'txt', 'pdf')"
+        },
+        "size": {
+          "type": "string",
+          "description": "Filter by file size (e.g., '>1mb', '<100kb', '1gb..2gb')"
+        },
+        "dateModified": {
+          "type": "string",
+          "description": "Filter by date modified (e.g., 'today', 'yesterday', 'thisweek', '2024')"
+        },
+        "maxResults": {
+          "type": "number",
+          "minimum": 1,
+          "maximum": 1000,
+          "description": "Maximum number of results to return (default: 100)"
+        },
+        "matchCase": {
+          "type": "boolean",
+          "description": "Enable case-sensitive search"
+        },
+        "matchWholeWord": {
+          "type": "boolean",
+          "description": "Match whole words only"
+        },
+        "regex": {
+          "type": "boolean",
+          "description": "Enable regular expression search"
+        },
+        "sortBy": {
+          "type": "string",
+          "enum": [
+            "name_asc",
+            "name_desc",
+            "path_asc",
+            "path_desc",
+            "size_asc",
+            "size_desc",
+            "date_asc",
+            "date_desc"
+          ],
+          "description": "Sort results by field"
+        }
+      },
+      "required": ["query"],
+      "additionalProperties": false,
+      "$schema": "http://json-schema.org/draft-07/schema#"
+    },
+    "annotations": null
+  },
+  {
+    "name": "find_duplicates",
+    "description": null,
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "filename": {
+          "type": "string",
+          "description": "Filename to search for duplicates"
+        },
+        "path": {
+          "type": "string",
+          "description": "Limit search to specific path"
+        },
+        "maxResults": {
+          "type": "number",
+          "minimum": 1,
+          "maximum": 1000,
+          "description": "Maximum number of results to return (default: 50)"
+        }
+      },
+      "required": ["filename"],
+      "additionalProperties": false,
+      "$schema": "http://json-schema.org/draft-07/schema#"
+    },
+    "annotations": null
+  },
+  {
+    "name": "search_content",
+    "description": null,
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "content": {
+          "type": "string",
+          "description": "Text content to search for within files"
+        },
+        "fileTypes": {
+          "type": "string",
+          "description": "Limit to specific file types (e.g., 'txt;doc;pdf')"
+        },
+        "path": {
+          "type": "string",
+          "description": "Limit search to specific path"
+        },
+        "maxResults": {
+          "type": "number",
+          "minimum": 1,
+          "maximum": 1000,
+          "description": "Maximum number of results to return (default: 50)"
+        }
+      },
+      "required": ["content"],
+      "additionalProperties": false,
+      "$schema": "http://json-schema.org/draft-07/schema#"
+    },
+    "annotations": null
+  }
+]

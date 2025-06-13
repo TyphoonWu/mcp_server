@@ -11,6 +11,7 @@ import numpy as np
 from src.utils import cosine_similarity
 import uvicorn
 from uvicorn.server import logger
+import requests
 
 # 加载环境变量
 env_path = Path(__file__).parent.parent / "./source/.env"
@@ -20,10 +21,18 @@ if env_path.exists():
     print(f"set MCP_SERVER_HOST: {os.getenv('MCP_SERVER_HOST')}")
     print(f"set MCP_SERVER_PORT: {os.getenv('MCP_SERVER_PORT')}")
 
-# 初始化 SentenceTransformer 模型, 是专为文本嵌入（Embedding）设计的预训练模型
-model_embedding = SentenceTransformer(
-    "paraphrase-multilingual-MiniLM-L12-v2", cache_folder=Path(__file__).parent.parent / "./models"
-)
+try:
+    # 下载并初始化 SentenceTransformer 模型, 是专为文本嵌入（Embedding）设计的预训练模型
+    model_embedding = SentenceTransformer(
+        "paraphrase-multilingual-MiniLM-L12-v2", cache_folder=Path(__file__).parent.parent / "./models"
+    )
+except requests.exceptions.SSLError as e:
+    # 初始化 SentenceTransformer 模型, 使用本地已下载的模型
+    model_path = str(Path(__file__).parent.parent / "models" / "models--sentence-transformers--paraphrase-multilingual-MiniLM-L12-v2" / "snapshots" / "86741b4e3f5cb7765a600d3a3d55a0f6a6cb443d")
+    if not Path(model_path).exists():
+        raise ValueError(f"Model path does not exist: {model_path}")
+    print(f"Loading model from: {model_path}")
+    model_embedding = SentenceTransformer(model_path, cache_folder=Path(__file__).parent.parent / "./models")
 
 # FastAPI 应用实例
 app = FastAPI()
@@ -151,7 +160,7 @@ async def mcp_tool_select(query: str = Body(..., embed=True)) -> McpItem:
     # 返回最佳匹配
     best_idx = np.argmax(similarities)
     logger.info(f"Query: {query}, Best Tool: {tool_items[best_idx].name}, Similarity: {similarities[best_idx]}")
-    return tool_items[best_idx].dict() if similarities[best_idx] > 0.4 else {}
+    return tool_items[best_idx].dict() if similarities[best_idx] > 0.3 else {}
 
 # 刷新 MCP 服务器以包含新端点
 mcp.setup_server()
