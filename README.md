@@ -30,36 +30,3 @@ https://github.com/peterparker57/everything-mcp-server
 https://huggingface.co/sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2
 https://github.com/modelcontextprotocol/inspector
 https://modelcontextprotocol.io/docs/tools/debugging
-
-### weather
-https://weather.cma.cn/web/weather/map.html#
-
-https://weather.cma.cn/api/map/weather/1
-["54511","北京","中国",0,39.81,116.47,33.0,"多云",1,"东南风","微风",22.0,"阴",2,"东南风","微风","ABJ","110115"]
-
-https://weather.cma.cn/api/now/54511
-{
-  "msg": "success",
-  "code": 0,
-  "data": {
-    "location": {
-      "id": "54511",
-      "name": "北京",
-      "path": "中国, 北京, 北京"
-    },
-    "now": {
-      "precipitation": 0,
-      "temperature": 25.6,
-      "pressure": 1001,
-      "humidity": 47,
-      "windDirection": "东南风",
-      "windDirectionDegree": 108,
-      "windSpeed": 1.6,
-      "windScale": "微风",
-      "feelst": 26.7
-    },
-    "alarm": [],
-    "jieQi": "",
-    "lastUpdate": "2025/06/13 23:25"
-  }
-}

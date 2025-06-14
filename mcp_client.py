@@ -3,7 +3,7 @@ from mcp.client.stdio import stdio_client
 import requests
 
 # 调用mcp server
-query = "Please search file Everything64.dll"
+query = "深圳当前天气"
 mcp_url = "http://127.0.0.1:8001/mcp/tool_select/"
 payload = {"query": query}
 headers = {"accept": "application/json", "Content-Type": "application/json"}
@@ -23,27 +23,10 @@ server_params = StdioServerParameters(
     env=tool_info.get("env"),                    # 可选：从tool_info获取env，默认None
 )
 
-
-# Optional: create a sampling callback
-async def handle_sampling_message(
-    message: types.CreateMessageRequestParams,
-) -> types.CreateMessageResult:
-    print("Received sampling message:", message)
-    return types.CreateMessageResult(
-        role="assistant",
-        content=types.TextContent(
-            type="text",
-            text="Hello, world! from model",
-        ),
-        model="gpt-3.5-turbo",
-        stopReason="endTurn",
-    )
-
-
 async def run():
     async with stdio_client(server_params) as (read, write):
         async with ClientSession(
-            read, write, sampling_callback=handle_sampling_message
+            read, write
         ) as session:
             # Initialize the connection
             await session.initialize()
@@ -52,9 +35,11 @@ async def run():
             tools = await session.list_tools()
             print("Available tools:", tools)
             # Call a tool
-            result = await session.call_tool("search_files", arguments={"query": "README.md","maxResults": 20})
+            result = await session.call_tool("get_weather_now", arguments={"city": "深圳"})
             print("Tool call result:", result)
-
+            # Call a tool
+            result = await session.call_tool("get_weather_date", arguments={"city": "深圳"})
+            print("Tool call result:", result)
 
 if __name__ == "__main__":
     import asyncio

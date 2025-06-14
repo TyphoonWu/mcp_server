@@ -23,13 +23,18 @@
     "weather-search": {
       "name": "Weather Search",
       "description": "Search for weather information using a weather API.",
-      "disabled": false,
+      "disabled": true,
       "timeout": 60,
       "type": "stdio",
-      "command": "",
-      "env": {
-        "WEATHER_API_KEY": "your_api_key_here"
-      }
+      "command": "node",
+      "args": [
+        "D:\\workspace\\mcp_server\\tools\\weather-search\\build\\index.js"
+      ],
+      "env": {},
+      "autoApprove": [
+        "get_weather_now",
+        "get_weather_date"
+      ]
     }
   }
 }
