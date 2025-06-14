@@ -3,7 +3,7 @@
     "everything": {
       "name": "file Search",
       "description": "Find and locate files or folders by name, such as searching for README.md file location on your computer.",
-      "disabled": true,
+      "disabled": false,
       "timeout": 60,
       "type": "stdio",
       "command": "node",
@@ -23,7 +23,7 @@
     "weather-search": {
       "name": "Weather Search",
       "description": "Search for weather information using a weather API.",
-      "disabled": true,
+      "disabled": false,
       "timeout": 60,
       "type": "stdio",
       "command": "node",
