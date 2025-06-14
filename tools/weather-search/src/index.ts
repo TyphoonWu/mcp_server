@@ -214,6 +214,7 @@ server.tool(
                         text: "Could not fetch weather data for " + city,
                     },
                 ],
+                isError: true,
             };
         }
 
@@ -231,6 +232,7 @@ server.tool(
                         `Last Update: ${weatherData.lastUpdate}\n`
                 },
             ],
+            isError: false,
         };
     },
 );
@@ -252,6 +254,7 @@ server.tool(
                         text: "Could not fetch weather data for " + city,
                     },
                 ],
+                isError: true,
             };
         }
 
@@ -270,6 +273,7 @@ server.tool(
                         `Wind Level: ${weatherData.windLevel}\n`,
                 },
             ],
+            isError: false,
         };
     },
 );
