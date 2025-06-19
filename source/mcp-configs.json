@@ -11,7 +11,7 @@
         "C:\\Users\\wostest\\workspace\\mcp_server\\tools\\everything-mcp-server\\build\\index.js"
       ],
       "env": {
-        "EVERYTHING_SDK_PATH": "C:\\Program Files\\Everything\\Everything-SDK\\dll\\Everything64.dll"
+        "EVERYTHING_SDK_PATH": "C:\\Program Files\\Everything\\Everything-SDK"
       },
       "autoApprove": [
         "search_files",
