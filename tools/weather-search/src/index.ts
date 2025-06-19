@@ -1,6 +1,6 @@
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
-import { log } from "console";
+import axios from 'axios';
 import { z } from "zod";
 
 
@@ -97,15 +97,17 @@ interface WeatherCityResponse {
 // Helper function for making NWS API requests
 async function makeNWSRequest<T>(url: string): Promise<T | null> {
     try {
-        const response = await fetch(url);
-        if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
+        const response = await axios.get(url, { timeout: 30 * 1000 });
+        console.error("HTTP success! status:", response.status);
+        // If response.data is already an object, no need to parse
+        const data = typeof response.data === "string" ? JSON.parse(response.data) : response.data;
+        return data as T;
+    } catch (error: any) {
+        if (error.code === 'ECONNABORTED') {
+            console.error('Error making NWS request timeout');
         } else {
-            console.error("HTTP success! status:", response.status);
+            console.error('Error making NWS request:', error);
         }
-        return (await response.json()) as T;
-    } catch (error) {
-        console.error("Error making NWS request:", error);
         return null;
     }
 }
@@ -145,10 +147,10 @@ async function getWeatherDataByDate(city: string): Promise<CityInfo | null> {
     if (city) {
         // 转换数据格式并打印
         const cities = response.data.city.map(cityArray => arrayToCityInfo(cityArray as any[]));
-        
+
         // 查找匹配的城市
         const cityData = cities.find(c => c.cityName === city);
-        
+
         if (cityData) {
             console.error("Found matching city:", cityData);
             return cityData;
@@ -172,7 +174,7 @@ async function getWeatherDataByNow(city: string): Promise<WeatherData | null> {
     if (city) {
         // 转换数据格式并打印
         const cities = response.data.city.map(cityArray => arrayToCityInfo(cityArray as any[]));
-        
+
         // 查找匹配的城市
         const cityData = cities.find(c => c.cityName === city);
         const stationId = cityData?.stationId;
@@ -199,9 +201,9 @@ async function getWeatherDataByNow(city: string): Promise<WeatherData | null> {
 
 server.tool(
     "get_weather_now",
-    "Get current weather forecast for a city name",
+    "Get current weather forecast for a city name, the name type is string",
     {
-        city: z.string().describe("Name of the city"),
+        city: z.string().describe("Name of the city, the type is string, the city string does not include string of 省，市，自治区，特别行政区，直辖市"),
     },
     async ({ city }) => {
 
@@ -222,7 +224,7 @@ server.tool(
             content: [
                 {
                     type: "text",
-                    text: "Fetching current weather forecast for " + city + ":\n" + 
+                    text: "Fetching current weather forecast for " + city + ":\n" +
                         `City: ${weatherData.location.name}\n` +
                         `Temperature: ${weatherData.now.temperature}°C\n` +
                         `Humidity: ${weatherData.now.humidity}%\n` +
@@ -239,9 +241,9 @@ server.tool(
 
 server.tool(
     "get_weather_date",
-    "Get today's weather forecast for a city name",
+    "Get today's weather forecast for a city name, the name type is string",
     {
-        city: z.string().describe("Name of the city"),
+        city: z.string().describe("Name of the city, the type is string, the city string does not include string of 省，市，自治区，特别行政区，直辖市"),
     },
     async ({ city }) => {
 
